@@ -1,11 +1,13 @@
 import { Router } from "express";
 
-const router = Router();
+export const router = Router();
 
 /**
  * Product Routes
  */
-router.get("/products", (req: Request, res: Response) => {});
+router.get("/products", (req, res) => {
+  res.status(200).json({ message: "products" });
+});
 router.get("/products/:id", (req: Request, res: Response) => {});
 
 router.post("/products", (req: Request, res: Response) => {});
