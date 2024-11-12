@@ -4,6 +4,7 @@ import cors from "cors";
 
 import { router } from "./router";
 import { protect } from "./modules/auth";
+import { createUser, singinUser } from "./handlers/user";
 
 const app = express();
 
@@ -17,5 +18,8 @@ app.get("/", function (_, res) {
 });
 
 app.use("/api", protect, router);
+
+app.post("/register", createUser);
+app.post("/signin", singinUser);
 
 export default app;
