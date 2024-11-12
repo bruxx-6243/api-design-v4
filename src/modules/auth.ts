@@ -20,5 +20,19 @@ export const protect = (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
-  next();
+  const [_, token] = bearer.split(" ");
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  try {
+    const user = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error(error);
+    return res.status(401).json({ message: "not valid token" });
+  }
 };
