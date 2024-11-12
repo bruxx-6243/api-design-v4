@@ -27,7 +27,7 @@ model Product {
   created_at DateTime @default(now())
 
   name    String @db.VarChar(255)
-  user_id String 
+  user_id String
   user    User   @relation(fields: [user_id], references: [id])
 
   updates Update[]
@@ -48,9 +48,9 @@ model Update {
   body    String        @db.Text
   status  UPDATE_STATUS @default(IN_PROGRESS)
   version String?
-  asset  String?
+  asset   String?
 
-  product_id String 
+  product_id String
   product    Product @relation(fields: [product_id], references: [id])
 
   update_points UpdatePoint[]
@@ -64,6 +64,6 @@ model UpdatePoint {
   name        String @db.VarChar(255)
   description String
 
-  update_id String 
+  update_id String
   update    Update @relation(fields: [update_id], references: [id])
 }
