@@ -31,6 +31,8 @@ model Product {
   user    User   @relation(fields: [user_id], references: [id])
 
   updates Update[]
+
+  @@unique([id, user_id])
 }
 
 enum UPDATE_STATUS {
@@ -42,7 +44,7 @@ enum UPDATE_STATUS {
 model Update {
   id         String   @id @default(uuid())
   created_at DateTime @default(now())
-  updated_at DateTime
+  updated_at DateTime @updatedAt()
 
   title   String        @db.VarChar(255)
   body    String        @db.Text
@@ -59,7 +61,7 @@ model Update {
 model UpdatePoint {
   id         String   @id @default(uuid())
   created_at DateTime @default(now())
-  updated_at DateTime
+  updated_at DateTime @updatedAt()
 
   name        String @db.VarChar(255)
   description String
