@@ -1,6 +1,8 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-const PORT = process.env.PORT || 3001;
+import config from "./config";
+
+const PORT = config.port;
 
 import app from "./server";
 
